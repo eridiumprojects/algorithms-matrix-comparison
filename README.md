@@ -1,6 +1,6 @@
 ## Реализация трех алгоритмов
 ### Бинарный
-```    
+``` java   
 public static int binarySearch(int[][] arr, int target) {
         int columns = arr[0].length - 1;
         int rows = 0;
@@ -18,7 +18,7 @@ public static int binarySearch(int[][] arr, int target) {
 ```
 **Асимптотика: O(Mlog(N))**
 ### Линейный (обход лестницей)
-```
+``` java
     public static int linearSearch(int[][] arr, int target) {
         int columns = arr[0].length - 1;
         int rows = 0;
@@ -36,7 +36,7 @@ public static int binarySearch(int[][] arr, int target) {
  ```
 **Асимптотика: O(M + N)**
 ### Экспоненциальный (обход лестницей)
-```
+``` java
     public static int exponentialSearch(int[][] arr, int target, int value) {
         int rows = 0;
         int columns = arr[0].length - 1;
@@ -69,7 +69,7 @@ public static int binarySearch(int[][] arr, int target) {
 ## Реализация двух генераций данных
 ### Первая генерация (target = 2*N + 1)
 ## __arr[i][j] = ((columns / rows) * i + j) * 2;__
-```
+``` java
     public static int[][] firstMatrixGeneration(int rows, int columns) {
         int[][] arr = new int[rows][columns];
         for (int i = 0; i < rows; i++) {
@@ -82,7 +82,7 @@ public static int binarySearch(int[][] arr, int target) {
  ```
  ### Вторая генерация (target = 16*N + 1)
  ## __arr[i][j] = ((columns / rows) * i * j) * 2;__
- ```
+ ``` java
      public static int[][] secondMatrixGeneration(int rows, int columns) {
         int[][] arr = new int[rows][columns];
         for (int i = 0; i < rows; i++) {
