@@ -121,7 +121,7 @@ public static int binarySearch(int[][] arr, int target) {
 ### Логарифмическое представление времени работы алгоритмов 
 ![Log](https://github.com/pestrikv/algorithms_lab/blob/master/log_scale.png)
 
-### Логарифмическое отношение двух экспоненциальных кривых 
+### Логарифмическое отношение времени двух экспоненциальных кривых 
 ![Exp_ratio](https://github.com/pestrikv/algorithms-matrix-comparison/blob/master/exponential_ratio.png)
 
 ## Вывод
