@@ -11,19 +11,19 @@ import static com.example.lab1_pestrikv.algorithms.linearImplementation.linearSe
 
 public class Main {
     public static void main(String[] args) {
-        int rows = (int) Math.pow(2, 1); //input rows value
+        int rows = (int) Math.pow(2, 13); //input rows value
         int firstGenerationTarget = 2 * rows + 1;
         int secondGenerationTarget = 16 * rows + 1;
         for (int i = 1; i <= 13; i++) {
-            scoring(rows, (int) Math.pow(2, i), firstGenerationTarget, secondGenerationTarget);
+            scoring(rows, (int) Math.pow(2, i), firstGenerationTarget, secondGenerationTarget, false);
         }
         for (int i = 1; i <= 13; i++) {
-            scoring(rows, (int) Math.pow(2, i), firstGenerationTarget, secondGenerationTarget);
+            scoring(rows, (int) Math.pow(2, i), firstGenerationTarget, secondGenerationTarget, true);
         } //we need to take last 13 results in console, it is solves java in-time compilation problem
     }
 
     public static void scoring(int rows, int columns,
-                               int firstGenerationTarget, int secondGenerationTarget) {
+                               int firstGenerationTarget, int secondGenerationTarget, boolean print) {
         long[] binaryResults = new long[100];
         long[] expResults = new long[100];
         long[] linearResults = new long[100];
@@ -57,10 +57,11 @@ public class Main {
         OptionalDouble expAvg = Arrays.stream(expResults).average();
         OptionalDouble linAvg = Arrays.stream(linearResults).average();
         OptionalDouble secondExpAvg = Arrays.stream(secondExpResults).average();
-        System.out.println("bin " + binAvg + "ns "
-                + "exp " + expAvg + "ns "
-                + "standard " + linAvg + "ns "
-                + "second exp " + secondExpAvg + "ns");
+        if (print)
+            System.out.println("bin " + binAvg + "ns "
+                    + "exp " + expAvg + "ns "
+                    + "standard " + linAvg + "ns "
+                    + "second exp " + secondExpAvg + "ns");
     }
-    }
+}
 
