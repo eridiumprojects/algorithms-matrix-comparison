@@ -37,31 +37,32 @@ public static int binarySearch(int[][] arr, int target) {
 **Асимптотика: O(M + N)**
 ### Экспоненциальный (обход лестницей)
 ``` java
-    public static int exponentialSearch(int[][] arr, int target, int value) {
+    public static int exponential(int[][] arr, int target) {
         int rows = 0;
         int columns = arr[0].length - 1;
-        while (columns >= 0 && rows < arr.length) {
-            if (arr[rows][columns] > target) {
-                if (columns > Math.pow(2, 5)) {
-                    while (arr[rows][Math.abs(columns - value)] > target && columns >= value) {
-                        if (value == 0) {
-                            value++;
-                        } else {
-                            value *= 2;
-                        }
-                    }
-                    value /= 2;
-                } else {
-                    value = 0;
-                }
-                columns = entryFirst(target, -1, columns - value, arr[rows]);
-            } else if (arr[rows][columns] < target) {
-                ++rows;
-            } else {
+        while (true) {
+            if (arr[rows][columns] == target) {
                 return columns;
             }
+            else if (arr[rows][columns] < target && rows == arr.length - 1) {
+                return -1;
+            }
+            else if (arr[rows][columns] > target) {
+                int jmp = 1;
+                int l = columns;
+                while (arr[rows][l] > target) {
+                    l -= jmp;
+                    jmp *= 2;
+                    if (l < 0) {
+                        l = 0;
+                        break;
+                    }
+                }
+                columns = entryFirst(target,l,columns,arr[rows]);
+            } else {
+                rows += 1;
+            }
         }
-        return -1;
     }
  ```
 **Асимптотика: O(Mlog(N))**
@@ -94,31 +95,14 @@ public static int binarySearch(int[][] arr, int target) {
     }
  ```
 
-## Результаты запусков (нс)
-| M | BIN | EXP_FIRST | STANDARD | EXP_SECOND |
-|:----|:----|:----|:----|:---- |
-| 2 | 23,54 | 52,12 | 1418,24 | 30,12 |
-| 4 | 134,35 | 146,75 | 2124,2 | 72,57 |
-| 8 | 298,14 | 317,36 | 2883,17 | 146,4 |
-| 16 | 706,06 | 702,8 | 2531,68 | 294,21 |
-| 32 | 1435,81 | 1533,23 | 2912,26 | 451,56 |
-| 64 | 3378,67 | 3631,59 | 3267,42 | 411,73 |
-| 128 | 7372,43 | 8626,22 | 4124,63 | 733,65 |
-| 256 | 20446,16 | 18368,57 | 4497,5 | 1557,32 |
-| 512 | 37361,3 | 21572,13 | 5731,94 | 2619,41 |
-| 1024 | 41112,11 | 33467,32 | 12147,97 | 4903,16 |
-| 2048 | 51791,99 | 68421,04 | 22536,21 | 12542,7 |
-| 4096 | 104733,46 | 152643,62 | 34864,21 | 32513,63 |
-| 8192 | 337165,89 | 220632,31 | 83174,05 | 81572,61 |
-
 
 ## Визуализация
 
 ### Линейное представление времени работы алгоритмов 
-![Linear](https://github.com/pestrikv/algorithms_lab/blob/master/standard_plot.png)
+![Linear](https://github.com/pestrikv/algorithms_lab/blob/master/standard_plot_new.png)
 
 ### Логарифмическое представление времени работы алгоритмов 
-![Log](https://github.com/pestrikv/algorithms_lab/blob/master/log_plot.png)
+![Log](https://github.com/pestrikv/algorithms_lab/blob/master/log_plot_new.png)
 
 ### Логарифмическое отношение времени двух экспоненциальных кривых 
 ![Exp_ratio](https://github.com/pestrikv/algorithms-matrix-comparison/blob/master/expdif_plot.png)
